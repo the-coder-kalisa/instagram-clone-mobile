@@ -1,12 +1,13 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import tw from 'twrnc'
+import { View, Text, Image,ScrollView, FlatList } from "react-native";
+import React from "react";
+import tw from "twrnc";
+import { user } from "../../data/User";
 const Stories = () => {
   return (
-    <View>
-      <Text style={tw`text-white`}>Stories</Text>
-    </View>
-  )
-}
+    <ScrollView>
+      <FlatList />
+    </ScrollView>
+  );
+};
 
-export default Stories
+export default Stories;
