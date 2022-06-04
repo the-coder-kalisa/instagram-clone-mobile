@@ -52,7 +52,7 @@ const Post = () => {
               <MaterialIcons name="bookmark" color="white" size={30} />
             </TouchableOpacity>
           </View>
-          <Text style={tw`text-white`}>{user.caption}</Text>
+          <Text style={tw`text-white px-2`}>{user.caption}</Text>
         </View>
       ))}
     </ScrollView>
