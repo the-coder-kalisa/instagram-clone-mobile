@@ -1,12 +1,16 @@
-import { ScrollView, View, Text, Image, Dimensions } from "react-native";
-import React, {useEffect} from "react";
+import { ScrollView, View, Text, Image, TouchableOpacity } from "react-native";
 import { post } from "../../data/User";
 import tw from "twrnc";
-import {  MaterialIcons} from "@expo/vector-icons";
-import {useDimensions, useDeviceOrientation} from '@react-native-community/hooks'
+import {
+  MaterialIcons,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import { useDimensions } from "@react-native-community/hooks";
 
 const Post = () => {
-  useEffect(()=>{console.log()},[])
+  const width = useDimensions().window.width;
+
   return (
     <ScrollView style={tw`my-5`}>
       {post.map((user, index) => (
@@ -26,12 +30,29 @@ const Post = () => {
               {user.images.map((image, index) => (
                 <Image
                   key={index}
-                  style={tw.style(``,{width: useDimensions().window.width, height: Dimensions.get('window').height-400})}
+                  style={tw.style(``, { width: width, height: width })}
                   source={{ uri: image }}
                 />
               ))}
             </View>
           </ScrollView>
+          <View style={tw`flex-row my-2 justify-between px-2`}>
+            <View style={tw`flex-row`}>
+              <TouchableOpacity style={tw`mr-2`}>
+                <FontAwesome name="heart-o" color="white" size={30} />
+              </TouchableOpacity>
+              <TouchableOpacity style={tw`mr-2`}>
+                <FontAwesome name="comment-o" color="white" size={30} />
+              </TouchableOpacity>
+              <TouchableOpacity style={tw`mr-2`}>
+                <MaterialIcons name="send" color="white" size={30} />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity>
+              <MaterialIcons name="bookmark" color="white" size={30} />
+            </TouchableOpacity>
+          </View>
+          <Text style={tw`text-white`}>{user.caption}</Text>
         </View>
       ))}
     </ScrollView>

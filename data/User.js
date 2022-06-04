@@ -31,7 +31,7 @@ export const post = [
     profile: "https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
     images: ["https://images.unsplash.com/photo-1550005809-91ad75fb315f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fHdlZGRpbmd8ZW58MHx8MHx8&w=1000&q=80", "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHdlZGRpbmd8ZW58MHx8MHx8&w=1000&q=80"],
     likes: 7870,
-    caption: "this is my wedding",
+    caption: "this is my wedding when it was raining in this time and the n we are in this world!",
     comments: [
       {user: "thecoder", comment: "Wow! i admire it was me"},
       {user: "Jazzy", comment: "Wow! i admire it was me"}
