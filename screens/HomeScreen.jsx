@@ -4,6 +4,7 @@ import tw from "twrnc";
 import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
 import { createContext, useEffect } from "react/cjs/react.production.min";
+import Post from "../components/home/Post";
 
 const HomeContext = createContext();
 
@@ -12,9 +13,10 @@ const HomeScreen = () => {
     <SafeAreaView
       style={tw.style(`andriod:pt-[${StatusBar.currentHeight}px] bg-black`, {flex: 1})}
     >
+      <StatusBar />
       <Header />
       <Stories />
-      <StatusBar />
+      <Post />
     </SafeAreaView>
   );
 };
