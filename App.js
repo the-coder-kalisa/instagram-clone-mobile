@@ -7,35 +7,34 @@ import { useEffect, useState } from "react";
 import SignupScreen from "./screens/SignupScreen";
 export default function App() {
   const Stack = createNativeStackNavigator();
-  const [token, setToken] = useState(undefined);
+  const [token, setToken] = useState(null);
+  const getData = async () => {
+    try {
+      setToken(await AsyncStorage.getItem("token"));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const getData = () => {
-      try {
-        setToken(AsyncStorage.getItem("token"));
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getData();
   }, []);
+  console.log(token)
   return (
     <NavigationContainer>
-      {token === undefined ? (
-        <Stack.Navigator
-          screenOptions={{ headerShown: false }}
-          initialRouteName="Home"
-        >
+      <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName="Home"
+      >
+        {token ? (
           <Stack.Screen name="Home" component={HomeScreen} />
-        </Stack.Navigator>
-      ) : (
-        <Stack.Navigator
-          screenOptions={{ headerShown: false }}
-          initialRouteName="Login"
-        >
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Signup" component={SignupScreen} />
-        </Stack.Navigator>
-      )}
+        ) : (
+          <>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Signup" component={SignupScreen} />
+            {token && <Stack.Screen name="Home" component={HomeScreen} />}
+          </>
+        )}
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

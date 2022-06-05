@@ -1,9 +1,10 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from '../axios'
 import tw from "twrnc";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const SignupScreen = ({ navigation }) => {
+  const [error, setError] = useState(null)
   const [values, setValues] = useState({
     email: "",
     fullname: "",
@@ -13,9 +14,10 @@ const SignupScreen = ({ navigation }) => {
   const signup = async() =>{
     try {
       const token = await (await axios.post('/signup', values)).data;
-      AsyncStorage.setItem('token', token);
+      await AsyncStorage.setItem('token', token);
+      navigation.navigate('Home')
     } catch (error) {
-      console.log(error)
+      setError(error.response.data);
     }
   }
   return (
@@ -27,6 +29,7 @@ const SignupScreen = ({ navigation }) => {
       <Text style={tw`font-bold text-2xl text-gray-500 text-center px-2`}>
         Signup to see photos and videos from your friends
       </Text>
+      {error && <Text style={tw`bg-red-500 rounded-md p-2 my-5 w-[80%] text-center font-bold text-white`}>{error}</Text>}
       <TextInput
         onChangeText={(email) => setValues({ ...values, email })}
         placeholder="Phone number, email or username"
@@ -53,6 +56,7 @@ const SignupScreen = ({ navigation }) => {
         style={tw.style("p-2 my-2 bg-gray-300  rounded-2 w-[20rem]", {
           borderWidth: 1,
         })}
+        secureTextEntry={true}
         placeholder="Password"
       />
       <TouchableOpacity onPress={signup} mode="contained" style={tw`w-[78%] rounded-2 my-1 py-3 items-center bg-blue-400`}>

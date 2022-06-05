@@ -27,7 +27,11 @@ const Header = () => {
               size={40}
               color="white"
             />
-            <View style={tw`absolute top-0 right-0 p-[2px] rounded-full bg-red-500 font-bold text-lg`} size={18} color="primary">
+            <View
+              style={tw`absolute top-0 right-0 p-[2px] rounded-full bg-red-500 font-bold text-lg`}
+              size={18}
+              color="primary"
+            >
               <Text style={tw`font-bold text-white`}>11</Text>
             </View>
           </View>

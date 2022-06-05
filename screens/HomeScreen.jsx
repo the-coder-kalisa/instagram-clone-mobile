@@ -5,10 +5,9 @@ import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
 import { createContext, useEffect } from "react/cjs/react.production.min";
 import Post from "../components/home/Post";
+import Footer from "../components/home/Footer";
 
-const HomeContext = createContext();
-
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView
       style={tw.style(`andriod:pt-[${StatusBar.currentHeight}px] bg-black`, {flex: 1})}
@@ -17,6 +16,7 @@ const HomeScreen = () => {
       <Header />
       <Stories />
       <Post />
+      <Footer navigation={navigation}/>
     </SafeAreaView>
   );
 };

@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const mongoose = require('mongoose');
 const PORT = 5000;
 const url = "mongodb://localhost:27017/instagram";
-const userRoute = require('./routes/userRoute.js')
+const userRoute = require('./routes/userRoute.js');
 mongoose.connect(url, ()=>{
     console.log('connected')
 })
