@@ -16,7 +16,7 @@ const Post = () => {
       {post.map((user, index) => (
         <View key={index}>
           <View style={tw`flex-row px-2 items-center justify-between`}>
-            <View style={tw`flex-row items-center`}>
+            <View style={tw`flex-row py-3 items-center`}>
               <Image
                 style={tw`h-[70px] mr-2 rounded-full w-[70px]`}
                 source={{ uri: user.profile }}
