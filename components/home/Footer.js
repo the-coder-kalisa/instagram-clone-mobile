@@ -4,7 +4,7 @@ import tw from "twrnc";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Footer = ({navigation}) => {
+const Footer = ({navigation, user}) => {
   const [show, setShow] = useState(false);
   const logout = async () => {
     try {
@@ -22,10 +22,11 @@ const Footer = ({navigation}) => {
       <View style={tw`relative`}>
         {show && (
           <View
-            style={tw`absolute px-2 flex-col w-24 bottom-8 right-1 bg-white`}
+            style={tw`absolute px-2 flex-col w-[12rem] bottom-8 right-1 bg-white`}
           >
-            <TouchableOpacity style={tw`my-2`}>
-              <Text>View profile</Text>
+            <TouchableOpacity style={tw`my-2 flex-row`}>
+              <Text>View profile mr </Text>
+              <Text>{user.username}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={logout} style={tw`my-2`}>
               <Text>Logout</Text>

@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import tw from "twrnc";
 import { Button } from "react-native-paper";
 import axios from '../axios'
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const LoginScreen = ({ navigation }) => {
   const [values, setValues] = useState({ email: "", password: "" });
   const [error, setError] = useState(null)
   const login = async() =>{
     try {
       const token = await (await axios.post('/login', values)).data;
+      console.log(token)
       await AsyncStorage.setItem('token', token);
       navigation.navigate('Home')
     } catch (error) {

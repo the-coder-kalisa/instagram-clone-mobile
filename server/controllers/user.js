@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
     if (!email.length || !password.length)
-      return res.status(400).send("enter your cridentials");
+    return res.status(400).send("enter your cridentials");
     const user = await User.findOne({ email });
     if (!user) return res.status(400).send("Email or password are invalid");
     const isValid = await bcrypt.compare(password, user.password);
@@ -38,6 +38,17 @@ exports.login = async (req, res) => {
     console.log(error)
   }
 };
+exports.getData = async(req, res) =>{
+  const {token} = req.body;
+  try{
+    const user = jwt.verify(token, process.env.secret);
+    const {_id} = user;
+    const me = await User.findOne({_id});
+    res.status(200).send(me);
+  }catch(error){
+    console.log(error)
+  }
+}
 const schema = joi.object().keys({
   email: joi.string().email().required(),
   fullname: joi.string().min(5).required(),

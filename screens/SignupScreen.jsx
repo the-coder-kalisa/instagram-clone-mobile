@@ -15,7 +15,7 @@ const SignupScreen = ({ navigation }) => {
     try {
       const token = await (await axios.post('/signup', values)).data;
       await AsyncStorage.setItem('token', token);
-      navigation.navigate('Home')
+      navigation.navigate('Home');
     } catch (error) {
       setError(error.response.data);
     }
