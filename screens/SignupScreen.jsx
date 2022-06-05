@@ -1,6 +1,8 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { useState } from "react";
+import axios from '../axios'
 import tw from "twrnc";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const SignupScreen = ({ navigation }) => {
   const [values, setValues] = useState({
     email: "",
@@ -8,6 +10,14 @@ const SignupScreen = ({ navigation }) => {
     username: "",
     password: "",
   });
+  const signup = async() =>{
+    try {
+      const token = await (await axios.post('/signup', values)).data;
+      AsyncStorage.setItem('token', token);
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <View style={tw.style(`justify-center items-center`, { flex: 1 })}>
       <View>
@@ -45,7 +55,7 @@ const SignupScreen = ({ navigation }) => {
         })}
         placeholder="Password"
       />
-      <TouchableOpacity mode="contained" style={tw`w-[78%] rounded-2 my-1 py-3 items-center bg-blue-400`}>
+      <TouchableOpacity onPress={signup} mode="contained" style={tw`w-[78%] rounded-2 my-1 py-3 items-center bg-blue-400`}>
         <Text style={tw`text-white font-bold`}> Signup </Text>
       </TouchableOpacity>
       <View style={tw`flex-row my-2`}>
