@@ -26,7 +26,7 @@ const Footer = ({navigation, user}) => {
           >
             <TouchableOpacity style={tw`my-2 flex-row`}>
               <Text>View profile mr </Text>
-              <Text>{user.username}</Text>
+              <Text>{user?.username}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={logout} style={tw`my-2`}>
               <Text>Logout</Text>
