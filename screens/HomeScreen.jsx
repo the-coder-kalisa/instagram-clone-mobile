@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
        let user = await (await axios.post('/getData', {token})).data;
        setUser(user)
       } catch (error) {
-        console.log(error.response)
+        console.log(error.response.data)
       }
     }
     fetchData();
